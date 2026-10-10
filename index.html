@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="НИИ «Сфера»">
+<title>НИИ «Сфера» · Досье</title>
+
+<link rel="icon" type="image/x-icon" href="favicon.ico?v=1">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=1">
+<link rel="shortcut icon" href="favicon.ico?v=1">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon.png?v=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;600;800&family=VT323&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ BOOT ============ -->
+<div id="boot" class="boot">
+    <div class="boot__scan"></div>
+    <div class="boot__inner">
+        <pre class="boot__log" id="bootLog"></pre>
+    </div>
+</div>
+
+<!-- ============ ЭФФЕКТЫ ============ -->
+<div class="fx fx--scanlines"></div>
+<div class="fx fx--noise"></div>
+<div class="fx fx--vignette"></div>
+<div class="fx fx--grain"></div>
+<div class="fx fx--edge"></div>
+<div class="fx fx--glitch" id="fxGlitch"></div>
+
+<!-- ============ ОСНОВНОЙ ИНТЕРФЕЙС ============ -->
+<div class="shell" id="shell" hidden>
+
+    <header class="head">
+        <div class="head__left">
+            <a class="head__mark" href="#dossier" data-nav data-page="dossier">НИИ «СФЕРА»</a>
+            <span class="head__sub">Научно-исследовательский институт «Сфера»</span>
+        </div>
+        <div class="head__right">
+            <div class="vol">
+                <span class="vol__label">ЗВУК</span>
+                <input type="range" id="vol" min="0" max="100" value="50" class="vol__slider">
+                <button class="vol__mute" id="muteBtn">mute</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <a class="tab" data-nav data-page="dossier"       href="#dossier">Личное дело</a>
+        <a class="tab" data-nav data-page="dialog"        href="#dialog">Переписка</a>
+        <a class="tab" data-nav data-page="motivation"    href="#motivation">Мотивация</a>
+        <a class="tab" data-nav data-page="goals"         href="#goals">Личные подцели</a>
+        <a class="tab" data-nav data-page="goals-shared"  href="#goals-shared">Общие цели</a>
+    </nav>
+
+    <main class="content" id="content"></main>
+
+    <div class="hint-bar" id="hintBar">
+        <span class="hint-bar__dot"></span>
+        <span>клик по странице — открыть следующую реплику</span>
+    </div>
+
+    <footer class="foot">
+        <span>НИИ «СФЕРА» · 1974—1991</span>
+    </footer>
+</div>
+
+<!-- ============================================================
+     ШАБЛОНЫ СТРАНИЦ
+     ============================================================ -->
+
+<!-- ==================================================
+     1. ЛИЧНОЕ ДЕЛО
+     ================================================== -->
+<script type="text/template" id="tpl-dossier">
+<section class="doc doc--dossier">
+
+    <h2 class="doc__title">ЛИЧНОЕ ДЕЛО</h2>
+
+    <div class="dossier__name">Ткачёва Людмила Сергеевна.</div>
+
+    <dl class="dossier__meta">
+        <div class="field">
+            <dt class="field__label">Возраст</dt>
+            <dd class="field__value">63 года.</dd>
+        </div>
+        <div class="field">
+            <dt class="field__label">Пол</dt>
+            <dd class="field__value">женский.</dd>
+        </div>
+        <div class="field field--wide">
+            <dt class="field__label">Образование</dt>
+            <dd class="field__value">Московское медицинское училище №2. Курсы повышения квалификации по психиатрии. Уход за пациентами в тяжёлых состояниях.</dd>
+        </div>
+        <div class="field field--wide">
+            <dt class="field__label">Место работы</dt>
+            <dd class="field__value">не работает. Пенсионерка. Бывшая старшая медсестра НИИ «Сфера» (1979–1991).</dd>
+        </div>
+    </dl>
+
+    <div class="dossier__section">Биография</div>
+
+    <div class="dossier__body">
+        <p>Родилась в Подмосковье, в рабочей семье. Отец — токарь, мать — повар. В семье четверо детей. Жили бедно, но дружно. С детства знала: надо работать. Надо помогать. Надо терпеть.</p>
+
+        <p>В 1976 закончила медучилище. Работала в районной больнице. В 1979 перешла в НИИ «Сфера». Закрытый объект. Хорошая зарплата. Секретность. Подписала бумаги и не задавала вопросов.</p>
+
+        <p>В НИИ работала с пациентами проекта «Морфей». Вводила препараты. Следила за датчиками. Меняла капельницы. Успокаивала тех, кто кричал во сне. Видела многое. Слишком многое.</p>
+
+        <p>В 1987, после инцидента с Крыловым, была в смене. Видела, как он закричал. Как датчики сошли с ума. Как Вельский побледнел. Как Мельник пытался что-то сделать. Помнит всё.</p>
+
+        <p>После этого перестала спать нормально. Кошмары. Голоса. Один и тот же сон: мальчик в пустой комнате. Он сидел и рисовал. Не смотрел на неё. Но она знала: он ждёт.</p>
+
+        <p>В 1991 уволилась. Уехала из Москвы. Работала в сельской больнице, потом — в доме престарелых. Старалась не думать о НИИ. Не вспоминать. Не говорить.</p>
+
+        <p>В 1995 вышла замуж. Муж — вдовец, двое детей. Прожили вместе 20 лет. Умер в 2015. Дети выросли, уехали. Осталась одна.</p>
+
+        <p>Последние годы живёт в маленькой квартире в Твери. Пенсия. Огород. Кошка. Тишина. Но сны не уходят. Каждую ночь — мальчик. Не говорит. Просто сидит. Просто смотрит. Просто ждёт.</p>
+
+        <p class="dossier__final">В 2024 получила письмо. Бумажное. В конверте — старый рисунок. Тот самый. Мальчик в пустой комнате. Подпись: «Простите меня. Вернитесь. — А. Вельский».</p>
+    </div>
+
+</section>
+</script>
+
+<!-- ==================================================
+     2. ПЕРЕПИСКА
+     ================================================== -->
+<script type="text/template" id="tpl-dialog">
+<section class="doc doc--dialog">
+
+    <h2 class="doc__title">РАЗГОВОР</h2>
+
+    <div class="scene print" data-lines='["Двое приезжают лично. Ткачёва открывает. Долго смотрит. Не спрашивает, кто. Знает, зачем."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Вы по поводу письма, — говорит она. Не вопросом. Утверждением."]'></div>
+        <div class="chat__line print" data-lines='["— Да. Людмила Сергеевна, можно войти?"]'></div>
+        <div class="chat__line print" data-lines='["— Можно. Только недолго. У меня кошка."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Они проходят. Садятся на кухне. Она ставит чайник. Не наливает. Садится напротив. Смотрит на них внимательно."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Говорите."]'></div>
+        <div class="chat__line print" data-lines='["— Вы получили письмо в декабре. От Вельского."]'></div>
+        <div class="chat__line print" data-lines='["— Вельский умер в девяносто третьем. Я была на похоронах. Я несла венок."]'></div>
+        <div class="chat__line print" data-lines='["— Мы знаем. Но письмо — от него."]'></div>
+        <div class="chat__line print" data-lines='["— Это невозможно."]'></div>
+        <div class="chat__line print" data-lines='["— Это не имеет значения. Важно другое. Вы знаете, кто отправил."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Пауза. Она смотрит в стол. Медленно проводит пальцем по краю чашки."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Нет. Не знаю."]'></div>
+        <div class="chat__line print" data-lines='["— Догадываетесь."]'></div>
+        <div class="chat__line print" data-lines='["— Догадываюсь."]'></div>
+        <div class="chat__line print" data-lines='["— Людмила Сергеевна. Мы собираемся в НИИ. Нам нужен человек, который помнит. Помнит процедуры. Помнит персонал. Помнит, что было двенадцатого марта."]'></div>
+        <div class="chat__line print" data-lines='["— Я старая. Я не хожу по бункерам."]'></div>
+        <div class="chat__line print" data-lines='["— Вам не нужно ходить. Вам нужно быть. Группа пойдёт. Вы будете рядом. В медпункте. В архиве."]'></div>
+        <div class="chat__line print" data-lines='["— Зачем вам я?"]'></div>
+        <div class="chat__line print" data-lines='["— Потому что Мельник идёт с нами."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Долгая пауза. Она медленно поднимает глаза."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Витя?"]'></div>
+        <div class="chat__line print" data-lines='["— Виктор Иванович. Он согласился."]'></div>
+        <div class="chat__line print" data-lines='["— Он жив?"]'></div>
+        <div class="chat__line print" data-lines='["— Жив. И идёт."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Она долго молчит. Потом встаёт. Идёт к шкафу. Достает старую коробку. Чёрно-белая фотография. Молодые люди в халатах. Среди них — она. И Вельский. И Мельник. Совсем мальчик."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Витя, — говорит тихо. — Он тогда был совсем мальчик."]'></div>
+        <div class="chat__line print" data-lines='["— Вы поедете?"]'></div>
+        <div class="chat__line print" data-lines='["— Поеду."]'></div>
+        <div class="chat__line print" data-lines='["— Почему?"]'></div>
+        <div class="chat__line print" data-lines='["— Потому что я тридцать четыре года не могла посмотреть ему в глаза. Пора."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Она ставит чайник на плиту. На этот раз — наливает чай. Всем. Себе тоже. Они сидят молча. Потом она говорит — тише:"]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Я вам не всё рассказала. Тогда. В восемьдесят седьмом. Я видела его. Не во сне. Наяву."]'></div>
+        <div class="chat__line print" data-lines='["— Кого?"]'></div>
+        <div class="chat__line print" data-lines='["— Мальчика. Он стоял у камеры №3. Смотрел. Улыбался. Я закричала. Он исчез."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Женщина слушает. Мужчина с папкой записывает."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Почему вы не рассказали раньше?"]'></div>
+        <div class="chat__line print" data-lines='["— Потому что мне никто не поверил. Вельский сказал: переутомление. Мельник сказал: дефект стекла. Я сказала: мальчик. Они сказали: нет."]'></div>
+        <div class="chat__line print" data-lines='["— А теперь?"]'></div>
+        <div class="chat__line print" data-lines='["— Теперь я скажу еще раз. И если кто-то опять скажет «нет» — я уйду. Но я скажу."]'></div>
+    </div>
+
+    <div class="scene print" data-lines='["Она отпивает чай. Смотрит в окно. Снег."]'></div>
+
+    <div class="chat">
+        <div class="chat__line print" data-lines='["— Когда выезд?"]'></div>
+        <div class="chat__line print" data-lines='["— Двадцать второе марта."]'></div>
+        <div class="chat__line print" data-lines='["— Хорошо. Я успею доплести носки."]'></div>
+        <div class="chat__line print" data-lines='["— Носки?"]'></div>
+        <div class="chat__line print" data-lines='["— Там холодно. В подвале. Я помню."]'></div>
+    </div>
+
+    <div class="scene scene--final print" data-lines='["Она улыбается. Впервые за 34 года."]'></div>
+
+</section>
+</script>
+
+<!-- ==================================================
+     3. МОТИВАЦИЯ
+     ================================================== -->
+<script type="text/template" id="tpl-motivation">
+<section class="doc doc--motivation">
+
+    <h2 class="doc__title">МОТИВАЦИЯ</h2>
+
+    <div class="motivation">
+        <p class="motivation__lead">Она была там. В 1987. В смене. Видела, как Крылов закричал. Как датчики сошли с ума. Как Вельский побледнел. Помнит всё. Каждую ночь. 38 лет.</p>
+
+        <p>В 2024 году получила письмо. Бумажное. Старый рисунок. Мальчик в пустой комнате. Подпись: «Простите меня. Вернитесь. — А. Вельский».</p>
+
+        <p>Вельский умер в 1993. Она была на похоронах. Значит, письмо — не от него. Значит, кто-то знает, что она там была.</p>
+
+        <p class="motivation__final">Она едет не чтобы вернуться. Она едет рассказать правду.</p>
+    </div>
+
+</section>
+</script>
+
+<!-- ==================================================
+     4. ЛИЧНЫЕ ПОДЦЕЛИ
+     ================================================== -->
+<script type="text/template" id="tpl-goals">
+<section class="doc doc--goals">
+
+    <h2 class="doc__title">ЛИЧНЫЕ ПОДЦЕЛИ</h2>
+
+    <ol class="goals">
+        <li class="goal">
+            <div class="goal__num">01</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти своё письмо директору. Увидеть свой почерк, свои слова.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">02</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти свой дневник. Перечитать, как описывала мальчика.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">03</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти акт о списании оборудования. Проверить свою приписку внизу.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">04</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти записку инженера Мельника. Понять, почему он написал код, который она не признала.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">05</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти любые записи дочери директора — она пропала год назад.</p>
+            </div>
+        </li>
+    </ol>
+
+</section>
+</script>
+
+<!-- ==================================================
+     5. ОБЩИЕ ЦЕЛИ — НЕ ТРОГАЕМ
+     ================================================== -->
+<script type="text/template" id="tpl-goals-shared">
+<section class="doc doc--goals">
+
+    <h2 class="doc__title">ОБЩИЕ ЦЕЛИ</h2>
+
+    <ol class="goals">
+        <li class="goal">
+            <div class="goal__num">01</div>
+            <div class="goal__body">
+                <p class="goal__main">Проникнуть на территорию НИИ «Сфера».</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">02</div>
+            <div class="goal__body">
+                <p class="goal__main">Найти вход в подземный бункер.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">03</div>
+            <div class="goal__body">
+                <p class="goal__main">Добраться до ЭВМ «Морфей» — ядро системы.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">04</div>
+            <div class="goal__body">
+                <p class="goal__main">Запустить систему. Вывести из консервации.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">05</div>
+            <div class="goal__body">
+                <p class="goal__main">Погрузиться в коллективный сон. Все восемь — одновременно.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">06</div>
+            <div class="goal__body">
+                <p class="goal__main">Внутри сна — найти источник «сонной болезни».</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">07</div>
+            <div class="goal__body">
+                <p class="goal__main">Остановить распространение. Любым способом.</p>
+            </div>
+        </li>
+
+        <li class="goal">
+            <div class="goal__num">08</div>
+            <div class="goal__body">
+                <p class="goal__main">Вернуться с данными. Если получится — все. Если нет — хотя бы один.</p>
+            </div>
+        </li>
+    </ol>
+
+</section>
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
